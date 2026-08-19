@@ -1,0 +1,47 @@
+"""
+Program 38: Write a Python Program to Multiply Two Matrices.
+"""
+
+def multiply_matrices(mat1, mat2):
+    # Determine the dimensions of the input matrices
+    rows1 = len(mat1)
+    cols1 = len(mat1[0])
+    rows2 = len(mat2)
+    cols2 = len(mat2[0])
+
+    # Check if multiplication is possible
+    if cols1 != rows2:
+        return "Matrix multiplication is not possible. Number of columns of first matrix must equal rows of second."
+
+    # Initialize the result matrix with zeros
+    result = [[0 for _ in range(cols2)] for _ in range(rows1)]
+
+    # Perform matrix multiplication
+    for i in range(rows1):
+        for j in range(cols2):
+            for k in range(cols1):
+                result[i][j] += mat1[i][k] * mat2[k][j]
+    return result
+
+if __name__ == "__main__":
+    # Example matrices
+    matrix1 = [
+        [1, 2, 3],
+        [4, 5, 6]
+    ]
+    matrix2 = [
+        [7, 8],
+        [9, 10],
+        [11, 12]
+    ]
+
+    # Multiply the matrices
+    result_matrix = multiply_matrices(matrix1, matrix2)
+
+    # Display the result
+    if isinstance(result_matrix, str):
+        print(result_matrix)
+    else:
+        print("Result of matrix multiplication:")
+        for row in result_matrix:
+            print(row)
